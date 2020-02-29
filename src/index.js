@@ -1,1 +1,1 @@
-import './src/TpApp.js';
+import './components/TpApp.js';
