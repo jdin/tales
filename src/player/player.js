@@ -31,3 +31,16 @@ export const usePaused = index => {
   });
   return paused;
 };
+
+export const useToggle = index => {
+  const paused = usePaused(index);
+  const play = usePlay(index);
+  const pause = usePause();
+  return () => {
+    if (paused) {
+      play();
+    } else {
+      pause();
+    }
+  }
+};
