@@ -1,19 +1,22 @@
 import { html } from 'lit-html';
 import { component, useCallback } from 'haunted';
-import player from '../player/player.js';
+import {usePlay, usePause, usePaused} from '../player/player.js';
 
 const TpTale = ({ index, source }) => {
   const { image, name } = source;
+  const pause = usePause();
+  const play = usePlay(index);
+  const paused = usePaused(index);
   const onClick = useCallback(() => {
-    if (player.paused(index)) {
-      player.play(index);
+    if (paused) {
+      play();
     } else {
-      player.pause();
+      pause();
     }
-  }, [index]);
+  }, [pause, play, paused]);
   return html`
     <img src=${image} alt=${name} />
-    <button @click=${onClick}>${player.paused(index) ? 'Play' : 'Pause'}</button>
+    <button @click=${onClick}>${paused ? 'Play' : 'Pause'}</button>
   `;
 };
 
