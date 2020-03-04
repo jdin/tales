@@ -1,5 +1,5 @@
-import {component} from 'haunted';
-import {html} from 'lit-html';
+import { component } from 'haunted';
+import { html } from 'lit-html';
 import sources from '../player/sources.js';
 import './TpTale.js';
 
@@ -11,12 +11,12 @@ const TpApp = () => {
       `,
   );
   return html`
-  <style>
-  :host {
-    display: block;
-    margin: 1em;
-  }
-</style>
+    <style>
+      :host {
+        display: block;
+        margin: 1em;
+      }
+    </style>
     ${tales}
   `;
 };

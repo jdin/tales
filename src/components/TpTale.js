@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { component, useCallback } from 'haunted';
-import {useToggle, usePaused, useProgress} from '../player/player.js';
+import { useToggle, usePaused, useProgress } from '../player/player.js';
 
 const TpTale = ({ index, source }) => {
   const { image, name } = source;
@@ -11,7 +11,7 @@ const TpTale = ({ index, source }) => {
   return html`
     <img src=${image} alt=${name} />
     <button @click=${onClick}>${paused ? 'Play' : 'Pause'}</button>
-    ${progress}
+    ${progress}%
   `;
 };
 

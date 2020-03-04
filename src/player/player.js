@@ -1,4 +1,4 @@
-import {useEffect, useState} from "haunted";
+import { useEffect, useState } from 'haunted';
 import sources from './sources.js';
 
 const files = sources.map(s => s.file);
@@ -25,19 +25,18 @@ export const usePaused = index => {
   const [paused, setPaused] = useState(player.paused);
   useEffect(() => {
     const listener1 = () => {
-      setPaused(true)
+      setPaused(true);
     };
     const listener2 = () => {
-      setPaused(false)
+      setPaused(false);
     };
     player.addEventListener('pause', listener1);
     player.addEventListener('play', listener2);
     return () => {
       player.removeEventListener('pause', listener1);
       player.removeEventListener('play', listener2);
-    }
+    };
   }, [setPaused, player]);
-
 
   return paused;
 };
@@ -52,16 +51,22 @@ export const useToggle = index => {
     } else {
       pause();
     }
-  }
+  };
 };
 
 export const useProgress = index => {
   const player = players[index];
   const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
   useEffect(() => {
     const listener = () => setProgress(player.currentTime);
     player.addEventListener('timeupdate', listener);
-    return () => player.removeEventListener('timeupdate', listener);
-  }, [setProgress, player]);
-  return progress;
+    const loadListener = () => setDuration(player.duration);
+    player.addEventListener('durationchange', loadListener);
+    return () => {
+      player.removeEventListener('timeupdate', listener);
+      player.removeEventListener('durationchange', loadListener);
+    };
+  }, [setProgress, player, setDuration]);
+  return Math.round((progress / duration) * 100);
 };
