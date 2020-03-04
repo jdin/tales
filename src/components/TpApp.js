@@ -2,18 +2,22 @@ import { component, useCallback, useState } from 'haunted';
 import { html } from 'lit-html';
 import sources from '../player/sources.js';
 import './TpTale.js';
-import {usePause} from "../player/player.js";
+import { usePause } from '../player/player.js';
+import {iterateIn} from "../utils/iterate.js";
 
 const TpApp = () => {
   const [containerCls, setContainerCls] = useState('');
   const [myHostCls, setMyHostCls] = useState('');
   const [selected, setSelected] = useState(-1);
   const pause = usePause();
-  const onTaleClick = useCallback(({detail:{index}}) => {
-    setSelected(index);
-    setContainerCls('four');
-    setMyHostCls('modal-active');
-  }, [setContainerCls, setMyHostCls, setSelected]);
+  const onTaleClick = useCallback(
+    ({ detail: { index } }) => {
+      setSelected(index);
+      setContainerCls('four');
+      setMyHostCls('modal-active');
+    },
+    [setContainerCls, setMyHostCls, setSelected],
+  );
 
   const onContainerClick = useCallback(() => {
     setContainerCls('four out');
@@ -24,9 +28,10 @@ const TpApp = () => {
   const tales = sources.map(
     (src, index) =>
       html`
-        <tp-tale .index=${index} .source=${src} @select=${onTaleClick}></tp-tale>
+        <tp-tale .index=${index} .source=${src} @select=${onTaleClick} class="grid-item"></tp-tale>
       `,
   );
+  const rows = Array.from(iterateIn(tales, 4));
 
   return html`
     <style>
@@ -161,6 +166,25 @@ const TpApp = () => {
           opacity: 0;
         }
       }
+
+      .content {
+        max-width: 1335px;
+        margin: 0 auto;
+      }
+      .grid-row {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+      }
+      .grid-item {
+        /*height: 200px;*/
+        flex-basis: 20%;
+        -ms-flex: auto;
+        /*width: 200px;*/
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+      }
     </style>
     <div id="myhost" class=${myHostCls}>
       <div id="modal-container" class=${containerCls} @click=${onContainerClick}>
@@ -180,7 +204,9 @@ const TpApp = () => {
         </div>
       </div>
       <div class="content">
-        ${tales}
+        ${rows.map(row => html`
+            <div class="grid-row">${row}</div>
+        `)}
       </div>
     </div>
   `;
