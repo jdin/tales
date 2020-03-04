@@ -1,24 +1,25 @@
-import { html } from 'lit-html';
-import { component, useCallback } from 'haunted';
-import { useToggle, usePaused, useProgress } from '../player/player.js';
+import {html} from 'lit-html';
+import {component, useCallback} from 'haunted';
+import {useToggle} from '../player/player.js';
 
-const TpTale = ({ index, source }) => {
-  const { image, name } = source;
+function TpTale({index, source}) {
+  const {image, name} = source;
   const toggle = useToggle(index);
-  const paused = usePaused(index);
-  const onClick = useCallback(() => toggle(), [toggle]);
-  const progress = useProgress(index);
+  // const paused = usePaused(index);
+  const onClick = useCallback(() => {
+    toggle();
+    this.dispatchEvent(new CustomEvent('select', {detail: {index, source}}));
+  }, [toggle]);
+  // const progress = useProgress(index);
   return html`
     <style>
       :host {
         display: block;
       }
     </style>
-    <img src=${image} alt=${name} />
-    <button @click=${onClick}>${paused ? 'Play' : 'Pause'}</button>
-    ${progress}%
+    <img src=${image} alt=${name} @click=${onClick} />
   `;
-};
+}
 
 const observedAttributes = ['index', 'source'];
-window.customElements.define('tp-tale', component(TpTale, { observedAttributes }));
+window.customElements.define('tp-tale', component(TpTale, {observedAttributes}));

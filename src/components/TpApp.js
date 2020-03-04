@@ -2,24 +2,29 @@ import { component, useCallback, useState } from 'haunted';
 import { html } from 'lit-html';
 import sources from '../player/sources.js';
 import './TpTale.js';
+import {usePause} from "../player/player.js";
 
 const TpApp = () => {
   const [containerCls, setContainerCls] = useState('');
   const [myHostCls, setMyHostCls] = useState('');
-  const onTaleClick = useCallback(() => {
+  const [selected, setSelected] = useState(-1);
+  const pause = usePause();
+  const onTaleClick = useCallback(({detail:{index}}) => {
+    setSelected(index);
     setContainerCls('four');
     setMyHostCls('modal-active');
-  }, [setContainerCls, setMyHostCls]);
+  }, [setContainerCls, setMyHostCls, setSelected]);
 
   const onContainerClick = useCallback(() => {
     setContainerCls('four out');
     setMyHostCls('');
-  }, [setContainerCls, setMyHostCls]);
+    pause();
+  }, [setContainerCls, setMyHostCls, pause]);
 
   const tales = sources.map(
-    (source, index) =>
+    (src, index) =>
       html`
-        <tp-tale .index=${index} .source=${source} @click=${onTaleClick}></tp-tale>
+        <tp-tale .index=${index} .source=${src} @select=${onTaleClick}></tp-tale>
       `,
   );
 
@@ -89,15 +94,6 @@ const TpApp = () => {
         font-weight: 300;
         position: relative;
       }
-      /*#modal-container .modal-background .modal h2 {*/
-      /*  font-size: 25px;*/
-      /*  line-height: 25px;*/
-      /*  margin-bottom: 15px;*/
-      /*}*/
-      /*#modal-container .modal-background .modal p {*/
-      /*  font-size: 18px;*/
-      /*  line-height: 22px;*/
-      /*}*/
       #modal-container .modal-background .modal .modal-svg {
         position: absolute;
         top: 0;
@@ -170,8 +166,7 @@ const TpApp = () => {
       <div id="modal-container" class=${containerCls} @click=${onContainerClick}>
         <div class="modal-background">
           <div class="modal">
-            <h2>I'm a Modal</h2>
-            <p>Hear me roar.</p>
+            ${tales[selected]}
             <svg
               class="modal-svg"
               xmlns="http://www.w3.org/2000/svg"
