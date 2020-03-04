@@ -9,6 +9,11 @@ const TpTale = ({ index, source }) => {
   const onClick = useCallback(() => toggle(), [toggle]);
   const progress = useProgress(index);
   return html`
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
     <img src=${image} alt=${name} />
     <button @click=${onClick}>${paused ? 'Play' : 'Pause'}</button>
     ${progress}%
