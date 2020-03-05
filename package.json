@@ -6,7 +6,7 @@
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
-    "start": "es-dev-server --app-index index.html --node-resolve --open --watch",
+    "start": "es-dev-server --app-index index.html --base-path /tales --node-resolve --open --watch",
     "build": "rimraf docs && rollup -c rollup.config.js",
     "start:build": "cd docs && es-dev-server --open"
   },
