@@ -1,6 +1,6 @@
 {
   "name": "Audio Tales",
-  "short_name": "Tales",
+  "short_name": "AudioTales",
   "icons": [{
     "src": "icons/icon-128.png",
     "sizes": "128x128",
@@ -16,7 +16,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/tales",
   "gcm_sender_id": "103953800507",
   "display": "standalone",
   "background_color": "#5CCECF",
