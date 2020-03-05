@@ -1,0 +1,25 @@
+{
+  "name": "Audio Tales",
+  "short_name": "Tales",
+  "icons": [{
+    "src": "icons/icon-128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  }, {
+    "src": "icons/icon-256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "gcm_sender_id": "103953800507",
+  "display": "standalone",
+  "background_color": "#5CCECF",
+  "theme_color": "#5CCECF",
+  "orientation": "landscape"
+}

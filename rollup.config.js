@@ -1,11 +1,18 @@
-import { createDefaultConfig } from '@open-wc/building-rollup';
+import {createDefaultConfig} from '@open-wc/building-rollup';
+import copy from 'rollup-plugin-cpy';
 
-// if you need to support IE11 use "modern-and-legacy-config" instead.
-// import { createCompatibilityConfig } from '@open-wc/building-rollup';
-// export default createCompatibilityConfig({ input: './index.html' });
+const outputDir = 'docs';
 
-export default createDefaultConfig({
-  input: './index.html',
-  outputDir: 'docs',
-  extensions: ['.js'],
-});
+const config = createDefaultConfig({input: './index.html', outputDir});
+
+export default {
+  ...config,
+  output: {
+    ...config.output,
+    sourcemap: false,
+  },
+  plugins: [...config.plugins, copy([
+    {files: ['./manifest.json'], dest: outputDir},
+    {files: ['icons/*.png'], dest: `${outputDir}/icons`}
+  ])],
+};

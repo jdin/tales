@@ -3,7 +3,7 @@ import { html } from 'lit-html';
 import sources from '../player/sources.js';
 import './TpTale.js';
 import { usePause } from '../player/player.js';
-import {iterateIn} from "../utils/iterate.js";
+import { iterateIn } from '../utils/iterate.js';
 
 const TpApp = () => {
   const [containerCls, setContainerCls] = useState('');
@@ -204,9 +204,11 @@ const TpApp = () => {
         </div>
       </div>
       <div class="content">
-        ${rows.map(row => html`
+        ${rows.map(
+          row => html`
             <div class="grid-row">${row}</div>
-        `)}
+          `,
+        )}
       </div>
     </div>
   `;
