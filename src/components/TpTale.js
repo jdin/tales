@@ -21,7 +21,8 @@ function TpTale({ index, source }) {
         img {
           cursor: pointer;
           border-radius: 7%;
-          border: 1px #eee solid;
+          border: 1px rgba(0, 0, 0, 0.2) solid;
+          box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
         }
     </style>
     <img src=${image} alt=${name} @click=${onClick} width=${SIZE} height=${SIZE} />
