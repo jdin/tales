@@ -8,7 +8,7 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "start": "es-dev-server --app-index index.html --base-path /tales --node-resolve --open --watch",
     "build": "rimraf docs && rollup -c rollup.config.js",
-    "start:build": "cd docs && es-dev-server --open"
+    "start:build": "cd docs && es-dev-server --open --base-path /tales"
   },
   "devDependencies": {
     "@open-wc/building-rollup": "^0.22.1",
