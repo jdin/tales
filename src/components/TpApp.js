@@ -113,9 +113,8 @@ const TpApp = () => {
       }
 
       .content {
-        /*min-height: 100%;*/
-        /*height: 100%;*/
-        /*background: white;*/
+        margin: 0 auto;
+        max-width: 1200px;
         position: relative;
         z-index: 0;
         display: flex;
