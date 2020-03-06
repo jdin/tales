@@ -172,7 +172,7 @@ const TpApp = () => {
         flex-basis: 20%;
         -ms-flex: auto;
         position: relative;
-        padding: 10px 10px 0 10px;
+        padding: 25px 25px 0 25px;
         box-sizing: border-box;
       }
     </style>

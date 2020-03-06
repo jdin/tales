@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import { component, useCallback } from 'haunted';
 import { useToggle } from '../player/player.js';
 
-const SIZE = 230;
+const SIZE = 200;
 
 function TpTale({ index, source }) {
   const { image, name } = source;
@@ -20,6 +20,7 @@ function TpTale({ index, source }) {
         }
         img {
           cursor: pointer;
+          border-radius: 7%;
         }
     </style>
     <img src=${image} alt=${name} @click=${onClick} width=${SIZE} height=${SIZE} />
