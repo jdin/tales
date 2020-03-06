@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import { component, useCallback } from 'haunted';
 import { useToggle } from '../player/player.js';
 
-const SIZE = 235;
+const SIZE = 230;
 
 function TpTale({ index, source }) {
   const { image, name } = source;
@@ -14,6 +14,14 @@ function TpTale({ index, source }) {
   }, [toggle]);
   // const progress = useProgress(index);
   return html`
+    <style>
+        :host {
+          display: block;
+        }
+        img {
+          cursor: pointer;
+        }
+    </style>
     <img src=${image} alt=${name} @click=${onClick} width=${SIZE} height=${SIZE} />
   `;
 }

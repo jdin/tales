@@ -118,6 +118,9 @@ const TpApp = () => {
         /*background: white;*/
         position: relative;
         z-index: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       @keyframes blowUpContent {
@@ -165,15 +168,11 @@ const TpApp = () => {
           opacity: 0;
         }
       }
-
-      .content {
-        margin: 0 auto;
-      }
       .grid-item {
         flex-basis: 20%;
         -ms-flex: auto;
         position: relative;
-        padding: 10px;
+        padding: 10px 10px 0 10px;
         box-sizing: border-box;
       }
     </style>
