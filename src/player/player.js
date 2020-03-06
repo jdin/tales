@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'haunted';
-import 'nosleep.js/dist/NoSleep.js';
+// import 'nosleep.js/dist/NoSleep.js';
 import sources from './sources.js';
 
 // eslint-disable-next-line no-undef
-const nosleep = new NoSleep();
+// const nosleep = new NoSleep();
 
 const files = sources.map(s => s.file);
 
@@ -13,7 +13,7 @@ for (const p of players) {
 }
 
 export const usePause = () => () => {
-  nosleep.disable();
+  // nosleep.disable();
   players.forEach(p => p.pause());
 };
 
@@ -25,7 +25,7 @@ export const usePlay = (index = 0) => () => {
       players[i].pause();
     }
   }
-  nosleep.enable();
+  // nosleep.enable();
   players[index].play();
 };
 
