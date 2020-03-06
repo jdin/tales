@@ -1,9 +1,8 @@
-import { component, useCallback, useState } from 'haunted';
-import { html } from 'lit-html';
+import {component, useCallback, useState} from 'haunted';
+import {html} from 'lit-html';
 import sources from '../player/sources.js';
 import './TpTale.js';
-import { usePause } from '../player/player.js';
-import { iterateIn } from '../utils/iterate.js';
+import {usePause} from '../player/player.js';
 
 const TpApp = () => {
   const [containerCls, setContainerCls] = useState('');
@@ -31,12 +30,11 @@ const TpApp = () => {
         <tp-tale .index=${index} .source=${src} @select=${onTaleClick} class="grid-item"></tp-tale>
       `,
   );
-  const rows = Array.from(iterateIn(tales, 4));
 
   return html`
     <style>
       :host {
-        overflow: hidden;
+        /*overflow: hidden;*/
       }
       :host,
       #myhost {
@@ -69,7 +67,7 @@ const TpApp = () => {
         transform: scale(1);
       }
       #modal-container.four .modal-background {
-        background: rgba(0, 0, 0, 0.7);
+        /*background: rgba(0, 0, 0, 0.7);*/
       }
       #modal-container.four .modal-background .modal {
         animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
@@ -87,12 +85,12 @@ const TpApp = () => {
 
       #modal-container .modal-background {
         display: table-cell;
-        background: rgba(0, 0, 0, 0.8);
+        /*background: rgba(0, 0, 0, 0.8);*/
         text-align: center;
         vertical-align: middle;
       }
       #modal-container .modal-background .modal {
-        background: white;
+        /*background: white;*/
         padding: 50px;
         display: inline-block;
         border-radius: 3px;
@@ -115,9 +113,9 @@ const TpApp = () => {
       }
 
       .content {
-        min-height: 100%;
-        height: 100%;
-        background: white;
+        /*min-height: 100%;*/
+        /*height: 100%;*/
+        /*background: white;*/
         position: relative;
         z-index: 0;
       }
@@ -150,6 +148,7 @@ const TpApp = () => {
       @keyframes blowUpModal {
         0% {
           transform: scale(0);
+          z-index: 1;
         }
         100% {
           transform: scale(1);
@@ -168,19 +167,11 @@ const TpApp = () => {
       }
 
       .content {
-        max-width: 1335px;
         margin: 0 auto;
       }
-      .grid-row {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-      }
       .grid-item {
-        /*height: 200px;*/
         flex-basis: 20%;
         -ms-flex: auto;
-        /*width: 200px;*/
         position: relative;
         padding: 10px;
         box-sizing: border-box;
@@ -204,11 +195,7 @@ const TpApp = () => {
         </div>
       </div>
       <div class="content">
-        ${rows.map(
-          row => html`
-            <div class="grid-row">${row}</div>
-          `,
-        )}
+        ${tales}
       </div>
     </div>
   `;

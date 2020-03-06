@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'haunted';
+import {useEffect, useState} from 'haunted';
 import sources from './sources.js';
 
 const files = sources.map(s => s.file);
 
 const players = files.map(f => new Audio(f));
+for (const p of players) {
+  p.preload = "none";
+}
 
 export const usePause = () => () => {
   players.forEach(p => p.pause());
